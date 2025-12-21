@@ -6,11 +6,19 @@
         <div class="flex items-center justify-between">
           <div>
             <h1 class="text-2xl font-semibold text-neutral-800">ProspectorCRM</h1>
-            <p class="text-neutral-500 text-sm mt-1">System Design Demo</p>
+            <p class="text-neutral-500 text-sm mt-1">Bem-vindo, {{ user?.email }}</p>
           </div>
           <div class="flex items-center space-x-3">
             <button class="bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium px-4 py-2 rounded-button transition-colors duration-250">
               Novo Lead
+            </button>
+            <button 
+              @click="handleLogout"
+              class="bg-neutral-500 hover:bg-neutral-600 text-white text-sm font-medium px-4 py-2 rounded-button transition-colors duration-250"
+              :disabled="isLoading"
+            >
+              <span v-if="isLoading">Saindo...</span>
+              <span v-else>Sair</span>
             </button>
           </div>
         </div>
@@ -198,6 +206,19 @@
 </template>
 
 <script setup lang="ts">
+// Usar o composable de autenticação
+const { user, logout, isLoading } = useAuth()
+
+// Função para lidar com logout
+const handleLogout = async () => {
+  try {
+    await logout()
+    // Redirecionamento é feito automaticamente no composable
+  } catch (error) {
+    console.error('Erro no logout:', error)
+  }
+}
+
 // Metadados da página
 useSeoMeta({
   title: 'ProspectorCRM - System Design',

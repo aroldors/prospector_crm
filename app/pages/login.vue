@@ -59,6 +59,16 @@
 <script setup lang="ts">
 import LoginForm from '@/components/LoginForm.vue'
 
+// Verificar se o usuário já está logado
+const user = useSupabaseUser()
+
+// Redirecionar se já estiver logado
+watch(user, (newUser) => {
+  if (newUser) {
+    navigateTo('/')
+  }
+}, { immediate: true })
+
 useHead({
   title: 'Login - ProspectorCRM',
   meta: [

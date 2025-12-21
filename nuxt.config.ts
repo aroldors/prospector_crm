@@ -10,5 +10,12 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   tailwindcss: {
     configPath: '~/tailwind.config.ts'
+  },
+  supabase: {
+    redirectOptions: {
+      login: '/login',
+      callback: '/login',
+      exclude: ['/login'] // Página de login não precisa de proteção
+    }
   }
 })
