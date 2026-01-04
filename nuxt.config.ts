@@ -7,6 +7,10 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/supabase'
   ],
+  alias: {
+    '~': './',
+    '@': './'
+  },
   css: ['~/assets/css/main.css'],
   tailwindcss: {
     configPath: '~/tailwind.config.ts'

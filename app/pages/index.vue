@@ -1,32 +1,5 @@
 <template>
-  <div class="min-h-screen bg-neutral-100">
-    <!-- Header -->
-    <header class="bg-white shadow-header border-b border-neutral-200">
-      <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-2xl font-semibold text-neutral-800">ProspectorCRM</h1>
-            <p class="text-neutral-500 text-sm mt-1">Bem-vindo, {{ user?.email }}</p>
-          </div>
-          <div class="flex items-center space-x-3">
-            <button class="bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium px-4 py-2 rounded-button transition-colors duration-250">
-              Novo Lead
-            </button>
-            <button 
-              @click="handleLogout"
-              class="bg-neutral-500 hover:bg-neutral-600 text-white text-sm font-medium px-4 py-2 rounded-button transition-colors duration-250"
-              :disabled="isLoading"
-            >
-              <span v-if="isLoading">Saindo...</span>
-              <span v-else>Sair</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main content -->
-    <main class="max-w-7xl mx-auto px-6 py-8">
+  <div>
       <!-- Métricas -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div class="bg-card-bg rounded-card shadow-card p-6">
@@ -37,7 +10,7 @@
             </div>
             <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
               <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
               </svg>
             </div>
           </div>
@@ -55,7 +28,7 @@
             </div>
             <div class="w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center">
               <svg class="w-5 h-5 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
           </div>
@@ -73,7 +46,7 @@
             </div>
             <div class="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center">
               <svg class="w-5 h-5 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
               </svg>
             </div>
           </div>
@@ -91,7 +64,7 @@
             </div>
             <div class="w-10 h-10 bg-info-100 rounded-lg flex items-center justify-center">
               <svg class="w-5 h-5 text-info-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
             </div>
           </div>
@@ -191,37 +164,13 @@
           </div>
         </div>
       </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-neutral-800 text-white mt-16">
-      <div class="max-w-7xl mx-auto px-6 py-8">
-        <div class="text-center">
-          <p class="text-neutral-400">ProspectorCRM - System Design</p>
-          <p class="text-neutral-500 text-sm mt-2">Design profissional e sóbrio para aplicações corporativas</p>
-        </div>
-      </div>
-    </footer>
-  </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-// Usar o composable de autenticação
-const { user, logout, isLoading } = useAuth()
-
-// Função para lidar com logout
-const handleLogout = async () => {
-  try {
-    await logout()
-    // Redirecionamento é feito automaticamente no composable
-  } catch (error) {
-    console.error('Erro no logout:', error)
-  }
-}
-
 // Metadados da página
 useSeoMeta({
-  title: 'ProspectorCRM - System Design',
-  description: 'Design system profissional para CRM com paleta sóbria e componentes corporativos'
+  title: 'ProspectorCRM - Dashboard',
+  description: 'Dashboard principal do ProspectorCRM com métricas e visão geral'
 })
 </script>

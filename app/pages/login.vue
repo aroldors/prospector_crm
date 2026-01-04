@@ -59,6 +59,11 @@
 <script setup lang="ts">
 import LoginForm from '@/components/LoginForm.vue'
 
+// Desabilitar layout padrão - página tem layout próprio
+definePageMeta({
+  layout: false
+})
+
 // Verificar se o usuário já está logado
 const user = useSupabaseUser()
 
