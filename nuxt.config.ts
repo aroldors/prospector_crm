@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    '@pinia/nuxt'
   ],
   alias: {
     '~': './',
@@ -14,6 +15,11 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   tailwindcss: {
     configPath: '~/tailwind.config.ts'
+  },
+  icon: {
+    serverBundle: {
+      collections: ['fa6-solid'] // Pre-bundle Font Awesome 6 solid icons
+    }
   },
   supabase: {
     redirectOptions: {

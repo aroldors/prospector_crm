@@ -6,9 +6,10 @@
       class="w-full flex items-center px-4 py-3 text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors duration-200"
       :class="buttonClass"
     >
-      <Icon v-if="icon" :name="icon" class="w-5 h-5 mr-3" />
-      <span>{{ label }}</span>
+      <Icon v-if="icon" :name="icon" :class="['w-5 h-5', label ? 'mr-3' : '']" />
+      <span v-if="label">{{ label }}</span>
       <Icon 
+        v-if="label"
         name="fa6-solid:chevron-up" 
         class="w-4 h-4 ml-auto transition-transform duration-200"
         :class="{ 'rotate-180': !isOpen }"
@@ -60,11 +61,13 @@ interface Props {
   items: DropdownItem[]
   position?: 'top' | 'bottom'
   buttonClass?: string
+  isCompact?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   position: 'bottom',
-  buttonClass: ''
+  buttonClass: '',
+  isCompact: false
 })
 
 // Estado reativo
@@ -72,7 +75,7 @@ const isOpen = ref(false)
 
 // Computed
 const dropdownPositionClass = computed(() => {
-  const baseClass = 'left-6 right-6'
+  const baseClass = props.isCompact ? 'left-0 w-48' : 'left-6 right-6'
   return props.position === 'top' 
     ? `${baseClass} bottom-full mb-2`
     : `${baseClass} top-full mt-2`
